@@ -1,4 +1,4 @@
-package shaoye.demolist.activity;
+package com.p4u.android.activity;
 
 /**
  * Created by ShaoZhen-PC on 2017/9/1.

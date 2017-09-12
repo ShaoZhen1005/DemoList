@@ -1,6 +1,4 @@
-package shaoye.demolist.activity;
-
-import android.util.Log;
+package com.p4u.android.activity;
 
 /**
  * Created by ShaoZhen-PC on 2017/9/1.
@@ -9,6 +7,7 @@ import android.util.Log;
 public class Activity_Fragment {
 /**
  * activity与fragment通信
+ * https://www.2cto.com/kf/201405/301679.html
  */
 // activity端
 //    @Override
