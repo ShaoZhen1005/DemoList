@@ -6,4 +6,12 @@
     android:id="@+id/ll_main"
     android:orientation="vertical">
     <include layout="@layout/titlebar"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="微信登录"
+        android:textColor="#ffffff"
+        android:textSize="20sp"/>
+
 </LinearLayout>

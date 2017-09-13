@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Title_bar">
+        <attr name="titleText" format="string"/>
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="titleColor" format="color"/>
+        <attr name="leftBtnText" format="string"/>
+        <attr name="leftBtnTextSize" format="dimension"/>
+        <attr name="leftBtnBackground" format="reference|color"/>
+        <attr name="rightBtnText" format="string"/>
+        <attr name="rightBtnTextSize" format="dimension"/>
+        <attr name="rightBtnBackground" format="reference|color"/>
+    </declare-styleable>
+    <!--
+        boolean
+            boolean表示attr是布尔类型的值，取值只能是true或false。
+        string
+            string表示attr是字符串类型。
+        integer
+            integer表示attr是整数类型，取值只能是整数，不能是浮点数。
+        float
+            float表示attr是浮点数类型，取值只能是浮点数或整数。
+        fraction
+            fraction表示attr是百分数类型，取值只能以%结尾，例如30%、120.5%等。
+        color
+            color表示attr是颜色类型，例如#ff0000，也可以使用一个指向Color的资源，比如@android:color/background_dark，但是不能用0xffff0000这样的值。
+        dimension
+            dimension表示attr是尺寸类型，例如取值16px、16dp，也可以使用一个指向<dimen>类型的资源，比如@android:dimen/app_icon_size。
+        reference
+            reference表示attr的值只能指向某一资源的ID，例如取值@id/textView。
+        enum
+            enum表示attr是枚举类型，在定义enum类型的attr时，可以将attr的format设置为enum，也可以不用设置attr的format属性，但是必须在attr节点下面添加一个或多个enum节点。如下所示：
+    -->
+</resources>

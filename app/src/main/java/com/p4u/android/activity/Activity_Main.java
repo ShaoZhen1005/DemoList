@@ -1,24 +1,38 @@
 package com.p4u.android.activity;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.p4u.android.R;
+import com.p4u.android.view.TitleBar;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class Activity_Main extends Activity {
-    private final String TAG = this.getClass().getName();
+public class Activity_Main extends Activity_Base {
     @Bind(R.id.ll_main)
     LinearLayout llMain;
+    @Bind(R.id.title_bar)
+    TitleBar titleBar;
+
+    private Context mContext;
 
     private String[] buttonName = new String[]{"微信登录", "QQ登陆", "Fragment+ViewPager"};
+    private HashMap<String, Intent> activityHashMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +40,68 @@ public class Activity_Main extends Activity {
         setContentView(R.layout.activity_main);
         // 绑定注解
         ButterKnife.bind(this);
+
+        mContext = getApplicationContext();
+        initAct();
         initView();
         setContentView(llMain);
+
+    }
+
+    private void initAct() {
+        activityHashMap.put("微信登录", new Intent(this, Activity_WX_Login.class));
+        activityHashMap.put("QQ登陆", new Intent(this, Activity_QQ_Login.class));
+        activityHashMap.put("Fragment+ViewPager", new Intent(this, Activity_Fragment.class));
     }
 
     public void initView() {
-//        ll_main = (LinearLayout) findViewById(R.id.ll_main);
-        for (int i = 0; i < buttonName.length; i++) {
-            addButton(i);
+        titleBar.setTitleName("主页");
+        titleBar.setLeftBtnVisable(false);
+        titleBar.setRightBtnVisable(true);
+        titleBar.setOnTitleBarClickListener(new TitleBar.TitleBarClickListener() {
+            @Override
+            public void leftClick() {
+                Toast.makeText(getApplicationContext(),"left",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void rightClick() {
+                Toast.makeText(getApplicationContext(),"right",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ScrollView scrollView = new ScrollView(mContext);
+        LinearLayout linearLayout = new LinearLayout(mContext);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        linearLayout.setPadding(0,5,0,5);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        scrollView.addView(linearLayout,layoutParams);
+        llMain.addView(scrollView,layoutParams);
+        //获取key和value的set
+        Iterator iter = activityHashMap.entrySet().iterator();
+        while (iter.hasNext()) {
+            //把hashmap转成Iterator再迭代到entry
+            Map.Entry entry = (Map.Entry) iter.next();
+            //从entry获取key
+            String key = (String) entry.getKey();
+            //从entry获取value
+            Intent val = (Intent) entry.getValue();
+            addButton(linearLayout,key, val);
         }
     }
 
-    private void addButton(int id) {
+    private void addButton(LinearLayout ll,String name, final Intent intent) {
         RelativeLayout rl = (RelativeLayout) View.inflate(
                 getApplicationContext(), R.layout.include_main_button, null);
+        rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
         TextView tv = (TextView) rl.findViewById(R.id.include_button_style);
-        tv.setText(buttonName[id]);
-        llMain.addView(rl);
+        tv.setText(name);
+        ll.addView(rl);
     }
 
     @Override
