@@ -5,5 +5,7 @@
     android:background="#333333"
     android:id="@+id/ll_main"
     android:orientation="vertical">
-    <include layout="@layout/titlebar"/>
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar"/>
 </LinearLayout>

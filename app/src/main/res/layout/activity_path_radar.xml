@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:id="@+id/ll_main"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar"/>
+
+    <com.p4u.android.view.Path_Radar_View
+        android:id="@+id/view_granzort"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

@@ -5,13 +5,33 @@
     android:background="#333333"
     android:id="@+id/ll_main"
     android:orientation="vertical">
-    <include layout="@layout/titlebar"/>
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar"/>
+
+    <ImageView
+        android:id="@+id/user_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="QQ登录"
+        android:id="@+id/user_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
         android:textColor="#ffffff"
-        android:textSize="20sp"/>
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/new_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/server_side_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

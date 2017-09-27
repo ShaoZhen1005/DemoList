@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/titlebar" />
+
+    <com.p4u.android.view.ViewGroupA
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@color/color_00c8de"
+        android:orientation="horizontal">
+
+        <com.p4u.android.view.ViewGroupB
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@color/color_ffaf51"
+            android:orientation="horizontal">
+
+            <com.p4u.android.view.ViewC
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/color_76c626" />
+
+        </com.p4u.android.view.ViewGroupB>
+    </com.p4u.android.view.ViewGroupA>
+
+    <com.p4u.android.view.ViewC
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/color_76c626" />
+</LinearLayout>

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="darkgrey">#ff404040</color>
+    <color name="toasterro">#9fd524</color>
+    <color name="lightgrey">#ff888888</color>
+    <color name="semitransparent">#80000000</color>
+    <color name="lightransparent">#a0000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="navpage">#FFE1E8EB</color>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="navpage">#FFE1E8EB</color>
     <color name="text_blue">#1ec8ee</color>
     <color name="text_gray">#9e9e9e</color>
     <color name="text_red">#FF0000</color>
@@ -14,7 +22,6 @@
     <color name="progress_color">#00a8e9</color>
     <color name="gray">#D6D6D6</color>
     <color name="home_list_bg">#EDEDED</color>
-    <color name="transparent">#0000</color>
     <color name="translucent_background">#60000000</color>
 
     <!-- 基本颜色 -->

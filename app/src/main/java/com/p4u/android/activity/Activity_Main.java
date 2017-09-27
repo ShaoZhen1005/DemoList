@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.p4u.android.R;
 import com.p4u.android.view.TitleBar;
@@ -31,7 +29,6 @@ public class Activity_Main extends Activity_Base {
 
     private Context mContext;
 
-    private String[] buttonName = new String[]{"微信登录", "QQ登陆", "Fragment+ViewPager"};
     private HashMap<String, Intent> activityHashMap = new HashMap<>();
 
     @Override
@@ -45,30 +42,25 @@ public class Activity_Main extends Activity_Base {
         initAct();
         initView();
         setContentView(llMain);
-
     }
 
     private void initAct() {
         activityHashMap.put("微信登录", new Intent(this, Activity_WX_Login.class));
         activityHashMap.put("QQ登陆", new Intent(this, Activity_QQ_Login.class));
         activityHashMap.put("Fragment+ViewPager", new Intent(this, Activity_Fragment.class));
+        activityHashMap.put("OkGo网络请求", new Intent(this, Activity_OkGo.class));
+        activityHashMap.put("Path-雷达图", new Intent(this, Activity_Path_Radar.class));
+        activityHashMap.put("Path-六芒星", new Intent(this, Activity_Path_Hexagram.class));
+        activityHashMap.put("Path-搜索", new Intent(this, Activity_Path_Search.class));
+        activityHashMap.put("PathMeasure", new Intent(this, Activity_PathMeasure.class));
+        activityHashMap.put("Android事件分发", new Intent(this, Activity_Incident_Distribute.class));
     }
 
     public void initView() {
-        titleBar.setTitleName("主页");
-        titleBar.setLeftBtnVisable(false);
-        titleBar.setRightBtnVisable(true);
-        titleBar.setOnTitleBarClickListener(new TitleBar.TitleBarClickListener() {
-            @Override
-            public void leftClick() {
-                Toast.makeText(getApplicationContext(),"left",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void rightClick() {
-                Toast.makeText(getApplicationContext(),"right",Toast.LENGTH_SHORT).show();
-            }
-        });
+        titleBar.title.setText("主页");
+        titleBar.back.setImageResource(R.mipmap.scriptlist_t_ic_back_default);
+        titleBar.right.setVisibility(View.INVISIBLE);
+        titleBar.layoutLeft.setVisibility(View.INVISIBLE);
 
         ScrollView scrollView = new ScrollView(mContext);
         LinearLayout linearLayout = new LinearLayout(mContext);

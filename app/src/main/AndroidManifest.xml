@@ -2,13 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.p4u.android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:hardwareAccelerated="false"
+        android:theme="@android:style/Theme.Light.NoTitleBar">
         <activity android:name=".activity.Activity_Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +54,75 @@
             android:exported="false"
             android:screenOrientation="sensorPortrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.Activity_OkGo"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.Activity_PathMeasure"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.Activity_Path_Radar"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.Activity_Path_Hexagram"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.Activity_Path_Search"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".activity.Activity_Incident_Distribute"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <!-- 微信 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="p4u" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- qq -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1105447429" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
     </application>
 
 </manifest>

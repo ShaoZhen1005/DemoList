@@ -1,12 +1,12 @@
 package com.p4u.android.view;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,12 +16,19 @@ import com.p4u.android.R;
  * Created by ShaoZhen-PC on 2017/9/13.
  */
 
-public class TitleBar  extends RelativeLayout {
+public class TitleBar extends RelativeLayout {
 
-    private Button leftBtn; //左侧按钮控件
-    private Button rightBtn;    //右侧按钮控件
-    private TextView titleTv;   //标题文本控件
-    public TitleBarClickListener listener;
+
+    public TextView title;
+    public LinearLayout layoutLeft;
+    public RelativeLayout layoutRight;
+    public TextView leftTxt;
+    public TextView righTxt;
+    public ImageView back;
+    public ImageView right;
+    public TextView count;
+    public View rightC;
+    private boolean flag = false;
 
     public TitleBar(Context context) {
         super(context);
@@ -29,86 +36,53 @@ public class TitleBar  extends RelativeLayout {
 
     public TitleBar(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
     }
 
+    public TitleBar(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-    /**
-     * 初始化参数，获取属性值
-     * @param context 上下文
-     */
-    private void init(Context context){
-
-        titleTv = new TextView(context);
-        leftBtn = new Button(context);
-        rightBtn = new Button(context);
-
-        leftBtn.setOnClickListener(new OnClickListener() {
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        title = (TextView) findViewById(R.id.title);
+        layoutLeft = (LinearLayout) findViewById(R.id.layout_left);
+        layoutRight = (RelativeLayout) findViewById(R.id.layout_right);
+        back = (ImageView) findViewById(R.id.left);
+        layoutLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.leftClick();
+                if (getContext() instanceof Activity) {
+                    ((Activity) getContext()).onBackPressed();
+                }
             }
         });
-        rightBtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.rightClick();
-            }
-        });
-
+        right = (ImageView) findViewById(R.id.right);
+        count = (TextView) findViewById(R.id.count);
+        rightC = findViewById(R.id.right_contain);
+        leftTxt = (TextView) findViewById(R.id.left_txt);
+        righTxt = (TextView) findViewById(R.id.right_txt);
     }
 
-    /**
-     * 定义按钮点击接口，实现回调机制，通过映射的接口对象调用接口中的方法
-     * 而不用去考虑如何实现，具体实现由调用者去创建
-     */
-    public interface TitleBarClickListener{
-        void leftClick();   //左侧按钮点击事件
-        void rightClick();  //右侧按钮点击事件
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
     }
 
-    /**
-     * 通过接口来获得回调者对接口的实现
-     * @param listener
-     */
-    public void setOnTitleBarClickListener(TitleBarClickListener listener){
-        this.listener = listener;
-    }
+    int w;
 
-    /**
-     * 设置标题
-     */
-    public void setTitleName(String text){
-        titleTv.setText(text);
-    }
-    public void setTitleName(int textSize,String text,int color){
-        titleTv.setTextSize(textSize);
-        titleTv.setText(text);
-        titleTv.setTextColor(color);
-    }
-
-    /**
-     * 设置左侧按钮是否可见
-     * @param flag  是否可见
-     */
-    public void setLeftBtnVisable(boolean flag){
-        if (flag){
-            leftBtn.setVisibility(VISIBLE);
-        }else {
-            leftBtn.setVisibility(GONE);
+    public void init() {
+        count.setVisibility(VISIBLE);
+        if (w == 0) w = right.getWidth() / 2;
+        if (!flag && w != 0) {
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) count.getLayoutParams();
+            params.setMargins(w, 0, 0, 0);
+            params.width = w;
+            params.height = right.getHeight() * 26 / 72;
+            count.setLayoutParams(params);
+            flag = !flag;
         }
-    }
-
-    /**
-     * 设置右侧按钮是否可见
-     * @param flag 是否可见
-     */
-    public void setRightBtnVisable(boolean flag){
-        if (flag){
-            rightBtn.setVisibility(VISIBLE);
-        }else {
-            rightBtn.setVisibility(GONE);
-        }
+        postInvalidate();
     }
 
 }
